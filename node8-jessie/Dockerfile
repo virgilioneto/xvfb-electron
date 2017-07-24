@@ -14,6 +14,8 @@ RUN apt-get update \
     libxrender1 \
     libxss1
 
-RUN npm isntall electron -g
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+
+RUN yarn global add electron
 
 CMD xvfb-run -a --server-args='-screen 0, 1280x800x24' electron . 
