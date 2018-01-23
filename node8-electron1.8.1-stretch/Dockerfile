@@ -1,5 +1,5 @@
-FROM node:7
-MAINTAINER Virgilio Missão Neto <virgilio.missao.neto@gmail.com>
+FROM node:8-stretch
+LABEL maintainer="Virgilio Missão Neto <virgilio.missao.neto@gmail.com>"
 RUN apt-get update \
     && apt-get install -y xvfb \
     libnotify4 \
@@ -14,6 +14,8 @@ RUN apt-get update \
     libxrender1 \
     libxss1
 
-RUN npm isntall electron -g
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+
+RUN yarn global add electron@1.8.1
 
 CMD xvfb-run -a --server-args='-screen 0, 1280x800x24' electron . 
